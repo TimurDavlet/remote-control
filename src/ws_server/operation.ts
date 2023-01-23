@@ -1,7 +1,8 @@
 import mouse from './operations/mouse';
+import draw from './operations/drawing';
+// import prnt from './operations/prnt';
 
-const getCommand = (data: any) => {
-  console.log(data.toString());
+const getCommand = (data: Buffer) => {
   const transformData = data.toString();
   const dataArr = transformData.split(' ');
   const [command, ...last] = dataArr;
@@ -11,15 +12,19 @@ const getCommand = (data: any) => {
   return { commandName, commandFullName, args: last };
 }
 
-const takeAction = async (data: any) => {
+const takeAction = async (data: Buffer) => {
   const command = getCommand(data);
   const { commandName, commandFullName, args } = command;
   try {
     switch(commandName) {
       case 'mouse':
         return await mouse(commandFullName, args);
+      case 'draw':
+        return await draw(commandFullName, args);
+      // case 'prnt':
+        // return await prnt();
     }
-  } catch {
+  } catch(e) {
     console.log('что-то пошло не так...');
   }
 }

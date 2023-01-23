@@ -1,6 +1,6 @@
 import { mouse, left, right, up, down, Point } from '../../../node_modules/@nut-tree/nut-js/dist/index';
 
-const mouseMove = (commandFullName: string, args: number[]) => {
+const mouseMove = (commandFullName: string, args: string[]) => {
   const arg = Number(args[0]);
   switch(commandFullName) {
     case 'mouse_up':
